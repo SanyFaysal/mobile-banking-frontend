@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
   const [isVisible, setIsVisible] = useState(false);
-  const [pass, setPass] = useState("");
-  console.log({ pass });
+
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleLogin = () => {};
@@ -32,9 +31,6 @@ export default function Login() {
           label="Password"
           color="secondary"
           placeholder="Enter your password"
-          onChange={(e) => setPass(e.target.value)}
-          isInvalid={pass?.length === 5 ? false : true}
-          value={pass}
           endContent={
             <button
               className="focus:outline-none"

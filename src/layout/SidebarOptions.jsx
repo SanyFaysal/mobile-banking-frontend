@@ -14,6 +14,9 @@ export default function SidebarOptions() {
         <p className="hover:text-white rounded-lg px-2 py-2 hover:bg-purple-500  duration-300">
           Cash Out
         </p>
+        <p className="hover:text-white rounded-lg px-2 py-2 hover:bg-purple-500  duration-300">
+          Transactions
+        </p>
       </div>
     </div>
   );

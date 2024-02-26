@@ -5,7 +5,7 @@ export default function SendMoney() {
   const [amount, setAmount] = useState(0);
   return (
     <div>
-      <div className=" flex flex-col  justify-center items-center gap-y-2">
+      <div className=" flex flex-col  justify-center items-center gap-y-2 mt-5">
         <div className="w-1/2">
           <h1 className="text-2xl my-2 text-purple-500">Send Money </h1>
           <Input color="secondary" type="text" label="Sender Phone Number" />

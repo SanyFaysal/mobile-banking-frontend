@@ -5,6 +5,8 @@ import Layout from "../layout/Layout";
 import SendMoneyCard from "../components/cards/SendMoneyCard";
 import SendMoney from "../pages/user/SendMoney";
 import UserHome from "../pages/user/UserHome";
+import CashOut from "../pages/user/CashOut";
+import UserCashIn from "../pages/agent/UserCashIn";
 
 const router = createBrowserRouter([
   {
@@ -30,10 +32,34 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <UserHome />,
+        children: [
+          {
+            path: "send-money",
+            element: <SendMoney />,
+          },
+          {
+            path: "cash-out",
+            element: <CashOut />,
+          },
+        ],
       },
       {
-        path: "user/send-money",
-        element: <SendMoney />,
+        path: "agent",
+        element: <UserHome />,
+        children: [
+          {
+            path: "balance",
+            element: <UserCashIn />,
+          },
+          {
+            path: "user-cash-in",
+            element: <UserCashIn />,
+          },
+          {
+            path: "transactions",
+            element: <CashOut />,
+          },
+        ],
       },
     ],
   },
