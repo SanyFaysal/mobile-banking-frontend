@@ -13,7 +13,18 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Auth"],
     }),
+    cashOut: builder.mutation({
+      query: ({ data, token }) => ({
+        url: "/user/cash-out",
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: data,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
-export const { useSendMoneyMutation } = userApi;
+export const { useSendMoneyMutation, useCashOutMutation } = userApi;
