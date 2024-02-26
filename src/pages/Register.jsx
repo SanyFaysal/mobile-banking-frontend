@@ -5,29 +5,49 @@ import { IoEyeOutline } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
   const [isVisible, setIsVisible] = useState(false);
   const [pass, setPass] = useState("");
   console.log({ pass });
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-  const handleLogin = () => {};
   return (
     <div className="flex flex-col items-center justify-center pt-20 bg-white">
       <div className=" w-1/2 mb-3">
         <h1 className=" text-2xl text-start text-purple-500">
-          Login to your account
+          Register your account
         </h1>
-        <p className="">Join with us and continue your account</p>
+        <p className="">Join with us and start your account</p>
       </div>
-      <form onSubmit={handleLogin} className=" flex flex-col gap-y-2 w-1/2 ">
+      <form className=" flex flex-col gap-y-2 w-1/2 ">
+        <Input
+          type="text"
+          color="secondary"
+          required
+          label="Full Name"
+          placeholder="Enter your full name"
+        />
+
+        <Input
+          type="text"
+          color="secondary"
+          label="Mobile Number"
+          placeholder="Enter your mobile Number"
+        />
         <Input
           color="secondary"
           type="email"
           label="Email"
           placeholder="Enter your email"
         />
-
+        <Select
+          color="secondary"
+          label="Account type"
+          placeholder="Select type"
+        >
+          <SelectItem key="User">User</SelectItem>
+          <SelectItem key="agent">Agent</SelectItem>
+        </Select>
         <Input
           label="Password"
           color="secondary"
@@ -52,13 +72,13 @@ export default function Login() {
         />
         <div className="flex justify-between  mt-2 items-center">
           <p>
-            Don't have any account ?{" "}
-            <Link to={"/register"} className="text-purple-500">
+            Already have an account ?{" "}
+            <Link to={"/login"} className="text-purple-500">
               Login
             </Link>
           </p>
           <button className="px-5 py-3 bg-purple-500 text-white rounded-lg ">
-            Login{" "}
+            Register{" "}
           </button>
         </div>
       </form>
