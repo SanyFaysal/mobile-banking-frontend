@@ -5,10 +5,10 @@ export default function Header() {
     <div className="bg-purple-50 px-3 py-3 rounded flex justify-between items-center">
       <h3 className="text-xl">Dashboard</h3>
       <User
-        name="Jane Doe"
-        description="Product Designer"
+        name="Abu Sani Faysal"
+        description="User"
         avatarProps={{
-          src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+          className: "bg-purple-500 text-white  text-lg font-bold",
         }}
       />
     </div>

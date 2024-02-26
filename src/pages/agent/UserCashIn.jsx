@@ -15,7 +15,7 @@ export default function UserCashIn() {
           Cash In To User Account{" "}
         </h1>
 
-        <Input color="secondary" type="text" label="Agent Number" />
+        <Input color="secondary" type="text" label="User Account Number" />
         <Input
           color="secondary"
           type="number"
@@ -41,7 +41,7 @@ export default function UserCashIn() {
           type={isVisible ? "text" : "password"}
         />
         <button className="px-5 py-3 bg-purple-500 text-white rounded-lg ml-auto block mt-4">
-          Cash Out
+          Cash In
         </button>
       </div>
     </div>

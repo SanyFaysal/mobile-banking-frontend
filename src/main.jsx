@@ -5,11 +5,15 @@ import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/index.jsx";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import store from "./redux/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
+  <Provider store={store}>
     <NextUIProvider>
       <RouterProvider router={router} />
+      <Toaster />
     </NextUIProvider>
-  </>
+  </Provider>
 );

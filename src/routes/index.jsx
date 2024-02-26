@@ -32,34 +32,38 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <UserHome />,
-        children: [
-          {
-            path: "send-money",
-            element: <SendMoney />,
-          },
-          {
-            path: "cash-out",
-            element: <CashOut />,
-          },
-        ],
+      },
+      {
+        path: "user/send-money",
+        element: <SendMoney />,
+      },
+      {
+        path: "user/cash-out",
+        element: <CashOut />,
       },
       {
         path: "agent",
         element: <UserHome />,
-        children: [
-          {
-            path: "balance",
-            element: <UserCashIn />,
-          },
-          {
-            path: "user-cash-in",
-            element: <UserCashIn />,
-          },
-          {
-            path: "transactions",
-            element: <CashOut />,
-          },
-        ],
+      },
+      {
+        index: true,
+        element: <UserHome />,
+      },
+      {
+        path: "agent/balance",
+        element: <UserCashIn />,
+      },
+      {
+        path: "agent/cash-request",
+        element: <UserCashIn />,
+      },
+      {
+        path: "agent/user-cash-in",
+        element: <UserCashIn />,
+      },
+      {
+        path: "agent/transactions",
+        element: <CashOut />,
       },
     ],
   },

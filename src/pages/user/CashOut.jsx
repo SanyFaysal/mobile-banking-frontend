@@ -15,7 +15,7 @@ export default function CashOut() {
           Cash out from your Account{" "}
         </h1>
 
-        <Input color="secondary" type="text" label="Agent Number" />
+        <Input color="secondary" type="text" label="Agent Account Number" />
         <Input
           color="secondary"
           type="number"
