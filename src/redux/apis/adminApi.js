@@ -22,7 +22,34 @@ const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    getAgentRequests: builder.query({
+      query: () => ({
+        url: `/admin/agent-request`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+    approveAgent: builder.mutation({
+      query: ({ agentId }) => ({
+        url: `/admin/approve-agent/${agentId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["User"],
+    }),
+    rejectAgent: builder.mutation({
+      query: ({ agentId }) => ({
+        url: `/admin/reject-agent/${agentId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
-export const { useBlockUserMutation, useUnblockUserMutation } = adminApi;
+export const {
+  useBlockUserMutation,
+  useUnblockUserMutation,
+  useGetAgentRequestsQuery,
+  useApproveAgentMutation,
+  useRejectAgentMutation,
+} = adminApi;

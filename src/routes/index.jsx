@@ -9,6 +9,11 @@ import CashOut from "../pages/user/CashOut";
 import UserCashIn from "../pages/agent/UserCashIn";
 import AllUsers from "../pages/admin/AllUsers";
 import UserTransactions from "../pages/admin/UserTransactions";
+import Transactions from "../pages/admin/AllUserTransactions";
+import AllUserTransactions from "../pages/admin/AllUserTransactions";
+import AllAgentTransactions from "../pages/admin/AllAgentTransactions";
+import AllAgentRequest from "../pages/admin/AgentRequest";
+import CashRequest from "../pages/agent/CashRequest";
 
 const router = createBrowserRouter([
   {
@@ -55,10 +60,7 @@ const router = createBrowserRouter([
         path: "agent/balance",
         element: <UserCashIn />,
       },
-      {
-        path: "agent/cash-request",
-        element: <UserCashIn />,
-      },
+
       {
         path: "agent/user-cash-in",
         element: <UserCashIn />,
@@ -68,12 +70,28 @@ const router = createBrowserRouter([
         element: <CashOut />,
       },
       {
+        path: "agent/cash-request",
+        element: <CashRequest />,
+      },
+      {
         path: "admin",
         element: <UserHome />,
       },
       {
         path: "admin/all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "admin/agent-request",
+        element: <AllAgentRequest />,
+      },
+      {
+        path: "admin/transactions/users",
+        element: <AllUserTransactions />,
+      },
+      {
+        path: "admin/transactions/agents",
+        element: <AllAgentTransactions />,
       },
       {
         path: "admin/transactions/:userId",

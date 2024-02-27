@@ -10,7 +10,7 @@ export default function Layout() {
       </div>
       <div className="h-screen col-span-5 mx-2 overflow-auto">
         <Header />
-        <div className="m-2  min-h-[80vh] ">
+        <div className=" mt-2 min-h-[80vh] ">
           <Outlet />
         </div>
       </div>

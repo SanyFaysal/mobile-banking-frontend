@@ -39,7 +39,7 @@ export default function AllUsers() {
   const [searchTerm, setSearchTerm] = useState("");
   const [value, setValue] = useState("");
   const { data } = useGetAllUserQuery({ userType: "user", token, searchTerm });
-  const [blockUser, { isSuccess, isError, error }] = useBlockUserMutation();
+  const [blockUser] = useBlockUserMutation();
   const [unblockUser] = useUnblockUserMutation();
 
   const handleSearchUser = (event) => {
@@ -53,14 +53,7 @@ export default function AllUsers() {
     if (value?.length === 0) {
       setSearchTerm("");
     }
-    if (isSuccess) {
-      toast.success("Blocked");
-    }
-    if (isError) {
-      toast.error("Something went wrong!");
-      console.log({ error });
-    }
-  }, [value, isError, isSuccess]);
+  }, [value]);
   return (
     <div>
       <div className="flex justify-between items-center mt-5 mb-2 gap-1">
