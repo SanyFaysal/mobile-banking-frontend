@@ -43,6 +43,38 @@ const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    getAllCashRequest: builder.query({
+      query: ({ token }) => ({
+        url: `/cashRequest`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["CashRequest"],
+    }),
+    approveCashRequest: builder.mutation({
+      query: ({ token, data }) => ({
+        url: `/cashRequest/approve`,
+        method: "PATCH",
+        body: data,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["CashRequest", "Auth"],
+    }),
+    rejectCashRequest: builder.mutation({
+      query: ({ token, data }) => ({
+        url: `/cashRequest/reject`,
+        method: "PATCH",
+        body: data,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["CashRequest", "Auth"],
+    }),
   }),
 });
 
@@ -52,4 +84,8 @@ export const {
   useGetAgentRequestsQuery,
   useApproveAgentMutation,
   useRejectAgentMutation,
+  useGetAllCashRequestQuery,
+
+  useApproveCashRequestMutation,
+  useRejectCashRequestMutation,
 } = adminApi;

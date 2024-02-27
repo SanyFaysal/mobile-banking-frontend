@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCashRequestMutation } from "../../redux/apis/agentAPi";
 import { getToken } from "../../utils/localstorage";
+import toast from "react-hot-toast";
 
 const CashRequest = () => {
   const token = getToken();
-  const [cashRequest, { isSuccess, isError, error }] = useCashRequestMutation();
-
+  const [cashRequest, { isSuccess, isLoading, isError, error }] =
+    useCashRequestMutation();
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading("Loading...", { id: "i" });
+    }
+    if (isSuccess) {
+      toast.success("Request Sent", { id: "i" });
+    }
+  }, [isLoading, isSuccess]);
   return (
     <div className="bg-purple-50 p-5 rounded">
       <h2 className="text-2xl ">
