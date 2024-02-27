@@ -19,8 +19,8 @@ const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["Auth"],
     }),
     getAllUser: builder.query({
-      query: ({ userType, token }) => ({
-        url: `/auth/all/${userType}`,
+      query: ({ userType, token, searchTerm }) => ({
+        url: `/auth/all/${userType}?searchTerm=${searchTerm}`,
         method: "GET",
         headers: {
           authorization: `Bearer ${token}`,

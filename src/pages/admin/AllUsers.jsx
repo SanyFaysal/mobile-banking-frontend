@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -10,101 +10,142 @@ import {
   Chip,
   Tooltip,
   getKeyValue,
+  Input,
+  Button,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 import { IoEye, IoPencil } from "react-icons/io5";
 import { MdBlock } from "react-icons/md";
 import { useGetAllUserQuery } from "../../redux/apis/authApi";
 import { getToken } from "../../utils/localstorage";
 import { formatDateTime } from "../../utils/dateTimeFormate";
-
-const columns = [
-  { name: "NAME", uid: "name" },
-  { name: "Account Number", uid: "account_number" },
-  { name: "Current Balance", uid: "current_balance" },
-  { name: "STATUS", uid: "status" },
-  { name: "ACTIONS", uid: "actions" },
-];
+import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const statusColorMap = {
   active: "success",
   blocked: "danger",
-  vacation: "warning",
+  inactive: "warning",
 };
 
 export default function AllUsers() {
   const token = getToken();
-  const { data } = useGetAllUserQuery({ userType: "user", token });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [value, setValue] = useState("");
+  const { data } = useGetAllUserQuery({ userType: "user", token, searchTerm });
 
+  const handleSearchUser = (event) => {
+    event.preventDefault();
+    const search = event.target.searchTerm.value;
+    setSearchTerm(search);
+    console.log({ search });
+  };
+
+  useEffect(() => {
+    if (value?.length === 0) {
+      setSearchTerm("");
+    }
+  }, [value]);
   return (
-    <Table aria-label="Example table with custom cells">
-      <TableHeader>
-        <TableColumn align={"start"}>Name</TableColumn>
-        <TableColumn align={"start"}>Account Number</TableColumn>
-        <TableColumn align={"start"}>Current Balance</TableColumn>
-        <TableColumn align={"start"}>Status</TableColumn>
-        <TableColumn align={"start"}>Created At</TableColumn>
-        <TableColumn align={"center"}>Actions</TableColumn>
-      </TableHeader>
-      <TableBody>
-        {data?.data?.map((auth) => (
-          <TableRow key="1">
-            <TableCell>
-              {" "}
-              <User
-                avatarProps={{ radius: "lg", src: auth.avatar }}
-                description={auth.email}
-                name={auth?.fullName}
-              >
-                {auth.email}
-              </User>
-            </TableCell>
-            <TableCell>
-              {" "}
-              <div className="flex flex-col">
+    <div>
+      <div className="flex justify-between items-center mt-5 mb-2 gap-1">
+        <h1 className="w-full text-xl">Total User : {data?.data?.length}</h1>
+        <form
+          onSubmit={handleSearchUser}
+          className="flex w-full gap-1 justify-end"
+        >
+          <Input
+            radius="sm"
+            type="text"
+            autoComplete="off"
+            name="searchTerm"
+            placeholder="Search User "
+            labelPlacement="outside"
+            className="w-2/4"
+            onChange={(e) => setValue(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="px-3 py-3 bg-purple-100 text-purple-500 rounded-lg"
+          >
+            <FaSearch />
+          </button>
+        </form>
+      </div>
+      <Table aria-label="Example table with custom cells">
+        <TableHeader>
+          <TableColumn align={"start"}>Name</TableColumn>
+          <TableColumn align={"start"}>Account Number</TableColumn>
+          <TableColumn align={"start"}>Current Balance</TableColumn>
+          <TableColumn align={"start"}>Status</TableColumn>
+          <TableColumn align={"start"}>Created At</TableColumn>
+          <TableColumn align={"center"}>Actions</TableColumn>
+        </TableHeader>
+        <TableBody>
+          {data?.data?.map((auth) => (
+            <TableRow key={auth?._id}>
+              <TableCell>
+                {" "}
+                <User
+                  avatarProps={{ radius: "lg", src: auth.avatar }}
+                  description={auth.email}
+                  name={auth?.fullName}
+                >
+                  {auth.email}
+                </User>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <div className="flex flex-col">
+                  <p className="text-bold text-sm capitalize">
+                    {auth?.mobileNumber}
+                  </p>
+                </div>
+              </TableCell>
+              <TableCell>
+                {" "}
                 <p className="text-bold text-sm capitalize">
-                  {auth?.mobileNumber}
+                  {auth?.user?.balance}
                 </p>
-              </div>
-            </TableCell>
-            <TableCell>
-              {" "}
-              <p className="text-bold text-sm capitalize">
-                {auth?.user?.balance}
-              </p>
-            </TableCell>
-            <TableCell>
-              {" "}
-              <Chip
-                className="capitalize"
-                color={statusColorMap[auth.status]}
-                size="sm"
-                variant="flat"
-              >
-                {auth?.status}
-              </Chip>
-            </TableCell>
-            <TableCell>
-              {" "}
-              <p>{formatDateTime(auth?.createdAt)}</p>
-            </TableCell>
-            <TableCell>
-              <div className="relative flex items-center gap-2">
-                <Tooltip content="Details">
-                  <span className="text-lg text-purple-500  cursor-pointer opacity-100">
-                    <IoEye />
-                  </span>
-                </Tooltip>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Chip
+                  className="capitalize"
+                  color={statusColorMap[auth.status]}
+                  size="sm"
+                  variant="flat"
+                >
+                  {auth?.status}
+                </Chip>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <p>{formatDateTime(auth?.createdAt)}</p>
+              </TableCell>
+              <TableCell>
+                <div className="relative flex items-center gap-4">
+                  <Tooltip content="Details">
+                    <Link
+                      to={`/layout/admin/transactions/${auth?._id}`}
+                      className="text-xl text-purple-500  cursor-pointer opacity-100"
+                    >
+                      <IoEye className="text-xl" />
+                    </Link>
+                  </Tooltip>
 
-                <Tooltip content="Block user">
-                  <span className="text-lg text-red-500  cursor-pointer opacity-100">
-                    <MdBlock />
-                  </span>
-                </Tooltip>
-              </div>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+                  <Tooltip content="Block user">
+                    <span className="text-lg text-red-500  cursor-pointer opacity-100">
+                      <MdBlock />
+                    </span>
+                  </Tooltip>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

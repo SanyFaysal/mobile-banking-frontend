@@ -8,6 +8,7 @@ import UserHome from "../pages/user/UserHome";
 import CashOut from "../pages/user/CashOut";
 import UserCashIn from "../pages/agent/UserCashIn";
 import AllUsers from "../pages/admin/AllUsers";
+import UserTransactions from "../pages/admin/UserTransactions";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "admin/all-users",
         element: <AllUsers />,
+      },
+      {
+        path: "admin/transactions/:userId",
+        element: <UserTransactions />,
       },
     ],
   },

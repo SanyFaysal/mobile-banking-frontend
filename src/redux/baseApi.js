@@ -4,7 +4,7 @@ const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080/api/v1",
   }),
-  tagTypes: ["Auth", "User", "Agent", "Admin"],
+  tagTypes: ["Auth", "User", "Agent", "Admin", "UserTransactions"],
   endpoints: (builder) => ({}),
 });
 
