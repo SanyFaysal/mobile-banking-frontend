@@ -11,6 +11,7 @@ const baseApi = createApi({
     "Admin",
     "UserTransactions",
     "CashRequest",
+    "Withdraw",
   ],
   endpoints: (builder) => ({}),
 });

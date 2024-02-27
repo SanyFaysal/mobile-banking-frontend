@@ -23,7 +23,22 @@ const agentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["CashRequest"],
     }),
+    withdrawRequest: builder.mutation({
+      query: ({ token, data }) => ({
+        url: `/withdraw`,
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: data,
+      }),
+      invalidatesTags: ["Withdraw"],
+    }),
   }),
 });
 
-export const { useUserCashInMutation, useCashRequestMutation } = agentApi;
+export const {
+  useUserCashInMutation,
+  useCashRequestMutation,
+  useWithdrawRequestMutation,
+} = agentApi;

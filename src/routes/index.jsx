@@ -15,6 +15,8 @@ import AllAgentTransactions from "../pages/admin/AllAgentTransactions";
 import AllAgentRequest from "../pages/admin/AgentRequest";
 import CashRequest from "../pages/agent/CashRequest";
 import AllCashRequest from "../pages/admin/AllCashRequest";
+import WithdrawMoney from "../pages/agent/WIthdrawMoney";
+import AllWithdrawRequest from "../pages/admin/AllWithdrawRequest";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +77,10 @@ const router = createBrowserRouter([
         element: <CashRequest />,
       },
       {
+        path: "agent/withdraw-request",
+        element: <WithdrawMoney />,
+      },
+      {
         path: "admin",
         element: <UserHome />,
       },
@@ -89,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: "admin/cash-request",
         element: <AllCashRequest />,
+      },
+      {
+        path: "admin/withdraw-request",
+        element: <AllWithdrawRequest />,
       },
       {
         path: "admin/transactions/users",

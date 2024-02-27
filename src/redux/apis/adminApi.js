@@ -75,6 +75,38 @@ const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["CashRequest", "Auth"],
     }),
+    getAllWithdrawRequest: builder.query({
+      query: ({ token }) => ({
+        url: `/withdraw`,
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["Withdraw"],
+    }),
+    approveWithdrawRequest: builder.mutation({
+      query: ({ token, data }) => ({
+        url: `/withdraw/approve`,
+        method: "PATCH",
+        body: data,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Withdraw", "Auth"],
+    }),
+    rejectWithdrawRequest: builder.mutation({
+      query: ({ token, data }) => ({
+        url: `/withdraw/reject`,
+        method: "PATCH",
+        body: data,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Withdraw", "Auth"],
+    }),
   }),
 });
 
@@ -88,4 +120,8 @@ export const {
 
   useApproveCashRequestMutation,
   useRejectCashRequestMutation,
+
+  useGetAllWithdrawRequestQuery,
+  useApproveWithdrawRequestMutation,
+  useRejectWithdrawRequestMutation,
 } = adminApi;
