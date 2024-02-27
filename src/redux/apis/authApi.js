@@ -26,7 +26,7 @@ const authApi = baseApi.injectEndpoints({
           authorization: `Bearer ${token}`,
         },
       }),
-      providesTags: ["USER"],
+      providesTags: ["User"],
     }),
   }),
 });
