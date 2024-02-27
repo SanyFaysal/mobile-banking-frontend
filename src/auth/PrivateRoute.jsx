@@ -16,6 +16,7 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (token && isLoading) {
+    
     return (
       <div className="h-[70vh] w-full flex justify-center items-center">
         {" "}

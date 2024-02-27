@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function TotalBalanceCard() {
+export default function TotalBalanceCard({ user }) {
   const [click, setClick] = useState();
   return (
     <div
@@ -11,7 +11,7 @@ export default function TotalBalanceCard() {
     >
       <p className="text-xl font-medium ">Total Balance</p>
       <p className={`  font-bold text-2xl text-wrap ${click ? "" : "blur-sm"}`}>
-        145500
+        {user[user?.accountType].balance}
       </p>
     </div>
   );

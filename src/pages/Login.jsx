@@ -46,14 +46,20 @@ export default function Login() {
   }, [isError, error, isSuccess]);
 
   return (
-    <div className="flex flex-col items-center justify-center pt-20 bg-white">
-      <div className=" w-1/2 mb-3">
+    <div className="flex flex-col items-center justify-center pt-20 bg-white mx-6">
+      <div>
+        <h1 className="text-3xl mb-5 text-purple-500">MyKash</h1>
+      </div>
+      <div className=" lg:w-1/2 mb-3 z-10">
         <h1 className=" text-2xl text-start text-purple-500">
           Login to your account
         </h1>
         <p className="">Join with us and continue your account</p>
       </div>
-      <form onSubmit={handleLogin} className=" flex flex-col gap-y-2 w-1/2 ">
+      <form
+        onSubmit={handleLogin}
+        className=" flex flex-col gap-y-2  lg:w-1/2 w-full z-10"
+      >
         <Input
           isRequired
           color="secondary"
@@ -84,7 +90,7 @@ export default function Login() {
           }
           type={isVisible ? "text" : "password"}
         />
-        <div className="flex justify-between  mt-2 items-center">
+        <div className="flex lg:flex-row flex-col justify-between  mt-2 items-center gap-2">
           <p>
             Don't have any account ?{" "}
             <Link to={"/register"} className="text-purple-500">
@@ -93,10 +99,16 @@ export default function Login() {
           </p>
           <input
             type="submit"
-            className="px-5 py-3 bg-purple-500 text-white rounded-lg "
+            value={"Login"}
+            className="px-5 py-3 bg-purple-500 text-white rounded-lg hover:cursor-pointer"
           />
         </div>
       </form>
+      <img
+        src="/src/assets/bg.png"
+        alt=""
+        className="absolute bottom-0 w-screen opacity-50 h-[50vh]"
+      />
     </div>
   );
 }

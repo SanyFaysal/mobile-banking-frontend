@@ -23,23 +23,32 @@ const adminApi = baseApi.injectEndpoints({
       invalidatesTags: ["User"],
     }),
     getAgentRequests: builder.query({
-      query: () => ({
+      query: (token) => ({
         url: `/admin/agent-request`,
         method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       }),
       providesTags: ["User"],
     }),
     approveAgent: builder.mutation({
-      query: ({ agentId }) => ({
+      query: ({ agentId, token }) => ({
         url: `/admin/approve-agent/${agentId}`,
         method: "PATCH",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       }),
       invalidatesTags: ["User"],
     }),
     rejectAgent: builder.mutation({
-      query: ({ agentId }) => ({
+      query: ({ agentId, token }) => ({
         url: `/admin/reject-agent/${agentId}`,
         method: "PATCH",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       }),
       invalidatesTags: ["User"],
     }),

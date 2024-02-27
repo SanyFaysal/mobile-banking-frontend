@@ -29,6 +29,8 @@ const authSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
+      state.isLoading = false;
+      state.isSuccess = true;
     },
   },
   extraReducers: (builder) => {

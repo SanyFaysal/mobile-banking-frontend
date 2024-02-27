@@ -23,7 +23,8 @@ import { TiTick } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 
 export default function AllAgentRequest() {
-  const { data } = useGetAgentRequestsQuery();
+  const token = getToken();
+  const { data } = useGetAgentRequestsQuery(token);
   const [rejectAgent] = useRejectAgentMutation();
   const [approveAgent] = useApproveAgentMutation();
   return (
@@ -79,7 +80,7 @@ export default function AllAgentRequest() {
               <TableCell className="flex gap-3 items-end mt-3">
                 <Tooltip content="Reject Agent">
                   <button
-                    onClick={() => rejectAgent({ agentId: auth?._id })}
+                    onClick={() => rejectAgent({ agentId: auth?._id, token })}
                     className="bg-red-100 text-red-500 rounded "
                   >
                     <RxCross2 className="text-2xl" />{" "}
@@ -87,7 +88,7 @@ export default function AllAgentRequest() {
                 </Tooltip>
                 <Tooltip content="Accept Agent">
                   <button
-                    onClick={() => approveAgent({ agentId: auth?._id })}
+                    onClick={() => approveAgent({ agentId: auth?._id, token })}
                     className="bg-green-100 text-green-500 rounded "
                   >
                     <TiTick className="text-2xl" />{" "}
