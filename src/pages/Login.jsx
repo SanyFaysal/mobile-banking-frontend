@@ -7,8 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/apis/authApi";
 import toast from "react-hot-toast";
 import { setToken } from "../utils/localstorage";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/slices/authSlice";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -23,8 +26,10 @@ export default function Login() {
       const data = { emailOrMobileNumber, password };
       const res = await loginUser(data).unwrap();
       if (res) {
-        navigate("/layout/user");
-        setToken(res.token);
+        console.log(res);
+        navigate(`/${res?.data?.accountType}`);
+        setToken(res?.token);
+        dispatch(setUser(res?.data));
       }
     } catch (error) {
       console.log({ error });
@@ -33,7 +38,6 @@ export default function Login() {
 
   useEffect(() => {
     if (isSuccess) {
-      setToken();
       toast.success("Logged in success");
     }
     if (isError) {

@@ -135,7 +135,7 @@ export default function AllUsers() {
                 <div className="relative flex items-center gap-4">
                   <Tooltip content="Transactions">
                     <Link
-                      to={`/layout/admin/transactions/${auth?._id}`}
+                      to={`/admin/transactions/${auth?._id}`}
                       className="text-xl text-purple-500  cursor-pointer opacity-100"
                     >
                       <IoEye className="text-xl" />

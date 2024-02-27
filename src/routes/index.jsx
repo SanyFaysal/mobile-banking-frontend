@@ -17,48 +17,51 @@ import CashRequest from "../pages/agent/CashRequest";
 import AllCashRequest from "../pages/admin/AllCashRequest";
 import WithdrawMoney from "../pages/agent/WIthdrawMoney";
 import AllWithdrawRequest from "../pages/admin/AllWithdrawRequest";
+import Login from "../pages/Login";
+import PrivateRoute from "../auth/PrivateRoute";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <div>Home </div>,
-  },
-  {
-    path: "/login",
-    element: <App />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/Layout",
-    element: <Layout />,
+    path: "/user",
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
-        element: <div>Hi</div>,
-      },
-      {
-        path: "user",
         element: <UserHome />,
       },
+
       {
-        path: "user/send-money",
+        path: "send-money",
         element: <SendMoney />,
       },
       {
-        path: "user/cash-out",
+        path: "cash-out",
         element: <CashOut />,
       },
+    ],
+  },
+  {
+    path: "/agent",
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <UserHome />,
+      },
+
       {
         path: "agent",
         element: <UserHome />,
       },
-      {
-        index: true,
-        element: <UserHome />,
-      },
+
       {
         path: "agent/balance",
         element: <UserCashIn />,
@@ -80,39 +83,57 @@ const router = createBrowserRouter([
         path: "agent/withdraw-request",
         element: <WithdrawMoney />,
       },
+    ],
+  },
+  {
+    path: "/admin",
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "admin",
+        index: true,
         element: <UserHome />,
       },
       {
-        path: "admin/all-users",
+        path: "all-users",
         element: <AllUsers />,
       },
       {
-        path: "admin/agent-request",
+        path: "agent-request",
         element: <AllAgentRequest />,
       },
       {
-        path: "admin/cash-request",
+        path: "cash-request",
         element: <AllCashRequest />,
       },
       {
-        path: "admin/withdraw-request",
+        path: "withdraw-request",
         element: <AllWithdrawRequest />,
       },
       {
-        path: "admin/transactions/users",
+        path: "transactions/users",
         element: <AllUserTransactions />,
       },
       {
-        path: "admin/transactions/agents",
+        path: "transactions/agents",
         element: <AllAgentTransactions />,
       },
       {
-        path: "admin/transactions/:userId",
+        path: "transactions/:userId",
         element: <UserTransactions />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 
