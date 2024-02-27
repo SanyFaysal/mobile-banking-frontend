@@ -13,7 +13,17 @@ const agentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Auth"],
     }),
+    cashRequest: builder.mutation({
+      query: ({ token }) => ({
+        url: `/cashRequest`,
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["CashRequest"],
+    }),
   }),
 });
 
-export const { useUserCashInMutation } = agentApi;
+export const { useUserCashInMutation, useCashRequestMutation } = agentApi;
