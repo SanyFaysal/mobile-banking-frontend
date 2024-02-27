@@ -31,10 +31,12 @@ const statusColorMap = {
 };
 
 export default function UserTransactions() {
+  const token = getToken();
   const { userId } = useParams();
 
   const { data } = useGetUserTransactionsQuery({
     userId,
+    token,
   });
 
   return (

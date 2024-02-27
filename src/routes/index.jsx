@@ -19,6 +19,7 @@ import WithdrawMoney from "../pages/agent/WIthdrawMoney";
 import AllWithdrawRequest from "../pages/admin/AllWithdrawRequest";
 import Login from "../pages/Login";
 import PrivateRoute from "../auth/PrivateRoute";
+import MyTransactions from "../pages/shared/MyTransactions";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         path: "cash-out",
         element: <CashOut />,
       },
+      {
+        path: "my-transactions",
+        element: <MyTransactions />,
+      },
     ],
   },
   {
@@ -58,30 +63,29 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "agent",
-        element: <UserHome />,
-      },
-
-      {
-        path: "agent/balance",
+        path: "balance",
         element: <UserCashIn />,
       },
 
       {
-        path: "agent/user-cash-in",
+        path: "user-cash-in",
         element: <UserCashIn />,
       },
       {
-        path: "agent/transactions",
+        path: "transactions",
         element: <CashOut />,
       },
       {
-        path: "agent/cash-request",
+        path: "cash-request",
         element: <CashRequest />,
       },
       {
-        path: "agent/withdraw-request",
+        path: "withdraw-request",
         element: <WithdrawMoney />,
+      },
+      {
+        path: "my-transactions",
+        element: <MyTransactions />,
       },
     ],
   },

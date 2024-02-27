@@ -21,18 +21,34 @@ import { useGetAllUserQuery } from "../../redux/apis/authApi";
 import { getToken } from "../../utils/localstorage";
 import { formatDateTime } from "../../utils/dateTimeFormate";
 import { FaSearch } from "react-icons/fa";
-import { useGetAllAgentTransactionsQuery } from "../../redux/apis/transactionAPi";
+import { useGetUserTransactionsQuery } from "../../redux/apis/transactionAPi";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-export default function AllAgentTransactions() {
+const statusColorMap = {
+  active: "success",
+  blocked: "danger",
+  inactive: "warning",
+};
+
+export default function MyTransactions() {
   const token = getToken();
-  const { data } = useGetAllAgentTransactionsQuery(token);
+  const { user } = useSelector((state) => state.auth);
+
+  const { data } = useGetUserTransactionsQuery({
+    userId: user?._id,
+    token,
+  });
 
   return (
     <div>
       <div className="flex justify-between items-center mt-5 mb-3 gap-1">
         <h1 className="w-full text-xl">
-          All <span className="text-purple-500">Agent</span> Transactions
+          All Transactions of <br />
+          <span className="text-purple-500">
+            {" "}
+            {data?.data[0]?.auth?.fullName}
+          </span>
         </h1>
       </div>
       <Table aria-label="Example table with custom cells">
@@ -50,10 +66,10 @@ export default function AllAgentTransactions() {
                 {" "}
                 <User
                   //   avatarProps={{ radius: "lg", src: auth.avatar }}
-                  description={transaction?.auth?.email}
+                  description={transaction?.auth.email}
                   name={transaction?.auth?.fullName}
                 >
-                  {transaction?.auth?.email}
+                  {transaction?.auth.email}
                 </User>
               </TableCell>
               <TableCell>

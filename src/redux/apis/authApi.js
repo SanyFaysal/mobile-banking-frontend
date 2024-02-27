@@ -6,6 +6,7 @@ const authApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: "/auth/register",
         method: "POST",
+
         body: data,
       }),
       invalidatesTags: ["Auth"],

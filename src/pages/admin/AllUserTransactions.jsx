@@ -28,7 +28,8 @@ import {
 import { useParams } from "react-router-dom";
 
 export default function AllUserTransactions() {
-  const { data } = useGetAllUserTransactionsQuery();
+  const token = getToken();
+  const { data } = useGetAllUserTransactionsQuery(token);
 
   return (
     <div>

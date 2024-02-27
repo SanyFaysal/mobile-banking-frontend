@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useWithdrawRequestMutation } from "../../redux/apis/agentAPi";
 import toast from "react-hot-toast";
 import { getToken } from "../../utils/localstorage";
+import { useSelector } from "react-redux";
 
 export default function WithdrawMoney() {
   const token = getToken();
+  const { user } = useSelector((state) => state.auth);
   const [amount, setAmount] = useState();
   const [withdraw, { isSuccess, isError, error }] =
     useWithdrawRequestMutation();
@@ -42,7 +44,8 @@ export default function WithdrawMoney() {
               color="secondary"
               className="text-lg bg-purple-200 px-3 rounded-full pb-1 text-purple-500 font-semibold "
             >
-              778855 <span className="text-3xl font-semibold">৳</span>
+              {user?.agent?.income}{" "}
+              <span className="text-3xl font-semibold">৳</span>
             </h1>
           </div>
         </div>

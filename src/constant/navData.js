@@ -11,6 +11,10 @@ export const userLinks = [
     title: "Cash Out",
     link: "/user/cash-out",
   },
+  {
+    title: "My Transactions",
+    link: "/user/my-transactions",
+  },
 ];
 
 export const agentLinks = [
@@ -29,6 +33,10 @@ export const agentLinks = [
   {
     title: "Withdraw Request",
     link: "/agent/withdraw-request",
+  },
+  {
+    title: "My Transactions",
+    link: "/agent/my-transactions",
   },
 ];
 
