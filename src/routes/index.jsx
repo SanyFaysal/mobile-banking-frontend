@@ -20,13 +20,30 @@ import AllWithdrawRequest from "../pages/admin/AllWithdrawRequest";
 import Login from "../pages/Login";
 import PrivateRoute from "../auth/PrivateRoute";
 import MyTransactions from "../pages/shared/MyTransactions";
+import CheckRole from "../auth/CheckRole";
+import AgentHome from "../pages/agent/AgentHome";
+import AdminHome from "../pages/admin/AdminHome";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
   {
     path: "/user",
     element: (
       <PrivateRoute>
-        <Layout />
+        <CheckRole role={"user"}>
+          <Layout />
+        </CheckRole>
       </PrivateRoute>
     ),
     children: [
@@ -53,13 +70,15 @@ const router = createBrowserRouter([
     path: "/agent",
     element: (
       <PrivateRoute>
-        <Layout />
+        <CheckRole role={"agent"}>
+          <Layout />
+        </CheckRole>
       </PrivateRoute>
     ),
     children: [
       {
         index: true,
-        element: <UserHome />,
+        element: <AgentHome />,
       },
 
       {
@@ -93,13 +112,15 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <PrivateRoute>
-        <Layout />
+        <CheckRole role={"admin"}>
+          <Layout />
+        </CheckRole>
       </PrivateRoute>
     ),
     children: [
       {
         index: true,
-        element: <UserHome />,
+        element: <AdminHome />,
       },
       {
         path: "all-users",
@@ -130,14 +151,6 @@ const router = createBrowserRouter([
         element: <UserTransactions />,
       },
     ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
 ]);
 
