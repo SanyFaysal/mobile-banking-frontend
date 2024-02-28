@@ -19,7 +19,7 @@ export default function Layout() {
         </div>
       </div>
       <img
-        src="/src/assets/bg.png"
+        src="https://res.cloudinary.com/dfcztmnvh/image/upload/v1709097087/bg_tbfija.png"
         alt=""
         className="absolute bottom-0 w-screen overflow-hidden opacity-30 h-[50vh]"
       />

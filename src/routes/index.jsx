@@ -23,6 +23,7 @@ import MyTransactions from "../pages/shared/MyTransactions";
 import CheckRole from "../auth/CheckRole";
 import AgentHome from "../pages/agent/AgentHome";
 import AdminHome from "../pages/admin/AdminHome";
+import NotFound from "../pages/shared/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
         element: <UserTransactions />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

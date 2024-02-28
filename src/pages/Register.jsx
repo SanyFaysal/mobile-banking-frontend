@@ -173,7 +173,7 @@ export default function Register() {
         </div>
       </form>
       <img
-        src="/src/assets/bg.png"
+        src="https://res.cloudinary.com/dfcztmnvh/image/upload/v1709097087/bg_tbfija.png"
         alt=""
         className="absolute bottom-0 w-screen opacity-60 h-[50vh]  z-0 "
       />
